@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Specifies the character encoding for the HTML document as UTF-8 -->
+    <meta charset="UTF-8">
+    <!-- Ensures the page scales correctly on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title of the page shown in the browser tab -->
+    <title>View Tasks</title>
+    <!-- Links to Bootstrap CSS for styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="container">
+    <!-- Main heading for the page displaying tasks -->
+    <h1 class="my-4">Your Tasks</h1>
+    
+    <!-- Navigation Links to access the home page and logout -->
+    <nav class="mb-4">
+        <a href="/employee-home" class="btn btn-primary">Home</a>
+        <a href="/logout" class="btn btn-danger">Logout</a>
+    </nav>
+
+    <!-- Filter Buttons to filter tasks by their status (all, pending, or completed) -->
+    <div class="btn-group mb-4" role="group">
+        <a href="/view-tasks?filter=all" class="btn btn-secondary">View All</a>
+        <a href="/view-tasks?filter=pending" class="btn btn-warning">View Pending</a>
+        <a href="/view-tasks?filter=completed" class="btn btn-success">View Completed</a>
+    </div>
+
+    <!-- Task List Section -->
+    <ul class="list-group">
+        <!-- Loop through each task in the 'tasks' list -->
+        {% for task in tasks %}
+        <li class="list-group-item" style="{% if task['status'] == 'Pending' and task['deadline'] and task['deadline'] < today %}color: red;{% else %}color: black;{% endif %}">
+            <!-- Display the task title and description -->
+            <strong>{{ task['title'] }}</strong>: {{ task['description'] }} <br>
+            <!-- Display the task status and deadline -->
+            Status: {{ task['status'] }} - Deadline: {{ task['deadline'] }}
+            <!-- If the task is pending, allow marking it as completed -->
+            {% if task['status'] == 'Pending' %}
+                <form method="POST" action="/update-task-status/{{ task['task_id'] }}" class="mt-2">
+                    <button type="submit" class="btn btn-sm btn-success">Mark as Completed</button>
+                </form>
+            {% endif %}
+            <!-- Add a link to edit the task -->
+            <a href="/edit-task/{{ task['task_id'] }}" class="btn btn-sm btn-warning mt-2">Edit Task</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

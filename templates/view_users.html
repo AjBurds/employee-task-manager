@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Specifies the character encoding for the HTML document as UTF-8 -->
+    <meta charset="UTF-8">
+    <!-- Ensures the page scales correctly on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title of the page shown in the browser tab -->
+    <title>Manage Users</title>
+    <!-- Links to Bootstrap CSS for styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="container">
+    <!-- Main heading for the page displaying 'Manage Users' -->
+    <h1 class="my-4">Manage Users</h1>
+
+    <!-- Navigation Links for Home and Logout -->
+    <nav class="mb-4">
+        <a href="/" class="btn btn-primary">Home</a>
+        <a href="/logout" class="btn btn-danger">Logout</a>
+    </nav>
+
+    <!-- User List: Table displaying the list of users -->
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <!-- Table headers for Username, Email, and Actions (edit/delete) -->
+                <th>Username</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through each user in the 'users' list -->
+            {% for user in users %}
+            <tr>
+                <!-- Display the username and email for each user -->
+                <td>{{ user['username'] }}</td>
+                <td>{{ user['email'] }}</td>
+                <td>
+                    <!-- Edit and Delete buttons for each user -->
+                    <a href="/edit-user/{{ user['user_id'] }}" class="btn btn-sm btn-warning">Edit</a>
+                    <!-- Confirmation prompt when deleting a user -->
+                    <a href="/delete-user/{{ user['user_id'] }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Link to create a new user -->
+    <a href="/create-user" class="btn btn-success mt-4">Create New User</a>
+</body>
+</html>

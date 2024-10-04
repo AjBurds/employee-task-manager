@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Specifies the character encoding for the HTML document as UTF-8 -->
+    <meta charset="UTF-8">
+    <!-- Ensures proper scaling for mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title of the page displayed in the browser tab -->
+    <title>Employee Dashboard</title>
+    <!-- Links to the Bootstrap CSS framework for styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="container">
+    <!-- Displays a welcome message with the employee's username -->
+    <h1 class="my-4">Welcome, {{ session['username'] }}!</h1>
+
+    <!-- Navigation Links for easy access -->
+    <nav class="mb-4">
+        <!-- Button to navigate to the page displaying the employee's tasks -->
+        <a href="/view-tasks" class="btn btn-primary">View My Tasks</a>
+        <!-- Button to log out of the system -->
+        <a href="/logout" class="btn btn-danger">Logout</a>
+    </nav>
+
+    <!-- Section for displaying the employee's assigned tasks -->
+    <div class="task-container">
+        <h2 class="mb-3">Your Assigned Tasks</h2>
+        <!-- Task list displayed as a Bootstrap list group -->
+        <ul class="list-group">
+            <!-- Loop through the tasks assigned to the employee and display them -->
+            {% for task in tasks %}
+            <li class="list-group-item">
+                <!-- Display the task title and description -->
+                <strong>{{ task['title'] }}</strong>: {{ task['description'] }}<br>
+                <!-- Display the task deadline and status -->
+                Deadline: {{ task['deadline'] }} - Status: {{ task['status'] }}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

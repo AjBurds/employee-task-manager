@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Specifies the character encoding for the HTML document as UTF-8 -->
+    <meta charset="UTF-8">
+    <!-- Ensures proper scaling for mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title of the page displayed in the browser tab -->
+    <title>Generate Report</title>
+    <!-- Links to the Bootstrap CSS framework for styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="container">
+    <!-- Main heading for the report generation page -->
+    <h1 class="my-4">Generate Report</h1>
+
+    <!-- Report Generation Form -->
+    <form method="POST" action="/generate-report" class="card p-4 shadow-sm">
+        <!-- Dropdown for selecting the report type (completed, pending, by employee) -->
+        <div class="form-group">
+            <label for="report_type">Select Report Type:</label>
+            <select name="report_type" class="form-control" required>
+                <option value="completed_tasks">Completed Tasks</option>
+                <option value="pending_tasks">Pending Tasks</option>
+                <option value="tasks_by_employee">Tasks by Employee</option>
+            </select>
+        </div>
+
+        <!-- Button to submit the form and generate the report -->
+        <button type="submit" class="btn btn-primary">Generate Report</button>
+    </form>
+
+    <!-- Button to navigate back to the home page -->
+    <a href="/" class="btn btn-secondary mt-4">Back to Home</a>
+</body>
+</html>

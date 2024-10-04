@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Specify the character set as UTF-8 to ensure proper encoding of text -->
+    <meta charset="UTF-8">
+    <!-- Set the viewport to ensure the page is responsive on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title that appears in the browser tab -->
+    <title>Create User</title>
+    <!-- Link to the Bootstrap CSS framework for styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="container">
+    <!-- Main heading for the page, indicating user creation -->
+    <h1 class="my-4">Create New User</h1>
+
+    <!-- Navigation Links for managers -->
+    <nav class="mb-4">
+        <!-- Button to navigate back to the Home page -->
+        <a href="/" class="btn btn-secondary">Home</a>
+        <!-- Button to manage existing users -->
+        <a href="/view-users" class="btn btn-secondary">Manage Users</a>
+        <!-- Button to log out and end the session -->
+        <a href="/logout" class="btn btn-danger">Logout</a>
+    </nav>
+
+    <!-- User Creation Form -->
+    <form method="POST" action="/create-user" class="card p-4 shadow-sm">
+        <!-- Input field for the username -->
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" name="username" class="form-control" required>
+        </div>
+
+        <!-- Input field for the email address -->
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" name="email" class="form-control" required>
+        </div>
+
+        <!-- Input field for the password -->
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" name="password" class="form-control" required>
+        </div>
+
+        <!-- Submit button to create the user -->
+        <button type="submit" class="btn btn-primary">Create User</button>
+    </form>
+</body>
+</html>

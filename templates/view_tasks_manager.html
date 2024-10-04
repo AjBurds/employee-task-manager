@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Specifies the character encoding for the HTML document as UTF-8 -->
+    <meta charset="UTF-8">
+    <!-- Ensures the page scales correctly on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title of the page shown in the browser tab -->
+    <title>View and Edit Tasks</title>
+    <!-- Links to Bootstrap CSS for styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="container">
+    <!-- Main heading for the page displaying all tasks -->
+    <h1 class="my-4">All Tasks</h1>
+
+    <!-- Navigation Links for easy access to home and logout -->
+    <nav class="mb-4">
+        <a href="/" class="btn btn-primary">Home</a>
+        <a href="/logout" class="btn btn-danger">Logout</a>
+    </nav>
+
+    <!-- Flash Messages Section to display any success or error messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="alert alert-info">
+                <ul>
+                    <!-- Loop through messages and display each one with the appropriate category class (success, error, etc.) -->
+                    {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Task List Section displaying all tasks in a list -->
+    <ul class="list-group">
+        <!-- Loop through each task in the 'tasks' list and display details -->
+        {% for task in tasks %}
+        <li class="list-group-item">
+            <!-- Task title and description -->
+            <strong>{{ task['title'] }}</strong> - {{ task['description'] }} <br>
+            <!-- Task deadline and status -->
+            Deadline: {{ task['deadline'] }} - Status: {{ task['status'] }}
+            <br>
+            <!-- Link to edit the task, styled as a small button -->
+            <a href="/edit-task-manager/{{ task['task_id'] }}" class="btn btn-sm btn-warning mt-2">Edit Task</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

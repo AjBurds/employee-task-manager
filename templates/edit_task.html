@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Specifies the character encoding for the HTML document as UTF-8 -->
+    <meta charset="UTF-8">
+    <!-- Sets the viewport to ensure proper scaling on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Sets the title of the page to be displayed in the browser tab -->
+    <title>Edit Task</title>
+    <!-- Links to the Bootstrap CSS framework for responsive styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="container">
+    <!-- Main heading of the 'Edit Task' page -->
+    <h1 class="my-4">Edit Task</h1>
+
+    <!-- Navigation Links for easy access to other parts of the application -->
+    <nav class="mb-4">
+        <!-- Button to return to the employee home dashboard -->
+        <a href="/employee-home" class="btn btn-secondary">Home</a>
+        <!-- Button to navigate to the task viewing page -->
+        <a href="/view-tasks" class="btn btn-secondary">View Tasks</a>
+        <!-- Button to log out of the system -->
+        <a href="/logout" class="btn btn-danger">Logout</a>
+    </nav>
+
+    <!-- Edit Task Form for modifying the task details -->
+    <form method="POST" action="/edit-task/{{ task['task_id'] }}" class="card p-4 shadow-sm">
+        {% if role == 'Manager' %}
+            <!-- If the user is a Manager, allow them to edit the task title -->
+            <div class="form-group">
+                <label for="title">Task Title:</label>
+                <input type="text" name="title" class="form-control" value="{{ task['title'] }}" required>
+            </div>
+
+            <!-- Managers can also edit the task description -->
+            <div class="form-group">
+                <label for="description">Task Description:</label>
+                <input type="text" name="description" class="form-control" value="{{ task['description'] }}" required>
+            </div>
+
+            <!-- Managers can modify the task deadline, with validation -->
+            <div class="form-group">
+                <label for="deadline">Deadline:</label>
+                <input type="date" name="deadline" id="deadline" class="form-control" value="{{ task['deadline'] }}" required>
+            </div>
+        {% endif %}
+
+        {% if role == 'Employee' %}
+            <!-- If the user is an Employee, allow them to update the task status -->
+            <div class="form-group">
+                <label for="status">Status:</label>
+                <select name="status" class="form-control" required>
+                    <!-- Employees can select between 'Pending' and 'Completed' statuses -->
+                    <option value="Pending" {% if task['status'] == 'Pending' %}selected{% endif %}>Pending</option>
+                    <option value="Completed" {% if task['status'] == 'Completed' %}selected{% endif %}>Completed</option>
+                </select>
+            </div>
+        {% endif %}
+
+        <!-- Button to submit the edited task details -->
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+
+    <script>
+        // JavaScript to ensure that Managers cannot select past dates for the task deadline
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('deadline').setAttribute('min', today);
+    </script>
+</body>
+</html>

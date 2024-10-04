@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Specifies the character encoding for the HTML document as UTF-8 -->
+    <meta charset="UTF-8">
+    <!-- Ensures proper scaling for mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title of the page displayed in the browser tab -->
+    <title>Edit User</title>
+    <!-- Links to the Bootstrap CSS framework for styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="container">
+    <!-- Heading for the Edit User page -->
+    <h1 class="my-4">Edit User</h1>
+
+    <!-- Navigation Links for easy access -->
+    <nav class="mb-4">
+        <!-- Button to navigate to the home page -->
+        <a href="/" class="btn btn-secondary">Home</a>
+        <!-- Button to navigate to the Manage Users page -->
+        <a href="/view-users" class="btn btn-secondary">Manage Users</a>
+        <!-- Button to log out from the system -->
+        <a href="/logout" class="btn btn-danger">Logout</a>
+    </nav>
+
+    <!-- Form for editing the user's information -->
+    <form method="POST" action="/edit-user/{{ user['user_id'] }}" class="card p-4 shadow-sm">
+        <!-- Input field for the username with pre-filled value from the user data -->
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" name="username" class="form-control" value="{{ user['username'] }}" required>
+        </div>
+
+        <!-- Input field for the email with pre-filled value from the user data -->
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" name="email" class="form-control" value="{{ user['email'] }}" required>
+        </div>
+
+        <!-- Input field for the password with pre-filled value from the user data -->
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" name="password" class="form-control" value="{{ user['password'] }}" required>
+        </div>
+
+        <!-- Button to save the changes made to the user -->
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+</body>
+</html>

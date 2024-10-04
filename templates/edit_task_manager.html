@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Specifies character encoding for the HTML document as UTF-8 -->
+    <meta charset="UTF-8">
+    <!-- Sets the viewport for responsive web design on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Sets the title for the page (visible in the browser tab) -->
+    <title>Edit Task</title>
+    <!-- Links to the Bootstrap 4.5.2 CSS for styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="container">
+    <!-- Main heading for the 'Edit Task' page -->
+    <h1 class="my-4">Edit Task</h1>
+
+    <!-- Navigation Links for easy access to other parts of the system -->
+    <nav class="mb-4">
+        <!-- Button to navigate back to the home page -->
+        <a href="/" class="btn btn-secondary">Home</a>
+        <!-- Button to navigate to the task manager to view all tasks -->
+        <a href="/view-tasks-manager" class="btn btn-secondary">View Tasks</a>
+        <!-- Button to log out of the system -->
+        <a href="/logout" class="btn btn-danger">Logout</a>
+    </nav>
+
+    <!-- Display Flash Messages for success or error notifications -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <!-- Loop through all messages and display them with appropriate styling -->
+            <div class="mb-4">
+                {% for category, message in messages %}
+                <!-- Dynamically apply 'alert-success' for success messages or 'alert-danger' for errors -->
+                <div class="alert alert-{{ 'success' if category == 'success' else 'danger' }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Edit Task Form for modifying an existing task -->
+    <form method="POST" action="/edit-task-manager/{{ task['task_id'] }}" class="card p-4 shadow-sm">
+        <!-- Input field for the task title -->
+        <div class="form-group">
+            <label for="title">Task Title:</label>
+            <input type="text" name="title" class="form-control" value="{{ task['title'] }}" required>
+        </div>
+
+        <!-- Input field for the task description -->
+        <div class="form-group">
+            <label for="description">Task Description:</label>
+            <input type="text" name="description" class="form-control" value="{{ task['description'] }}" required>
+        </div>
+
+        <!-- Input field for the task deadline -->
+        <div class="form-group">
+            <label for="deadline">Deadline:</label>
+            <input type="date" name="deadline" class="form-control" value="{{ task['deadline'] }}" required>
+        </div>
+
+        <!-- Submit button to save the edited task -->
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+</body>
+</html>

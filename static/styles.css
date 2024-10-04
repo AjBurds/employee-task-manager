@@ -1,0 +1,164 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa; /* Bootstrap's light gray background */
+    margin: 0;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    color: #343a40; /* Dark Bootstrap text color */
+    margin-bottom: 20px;
+}
+
+/* Flash Messages */
+.success, .error {
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.success {
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+}
+
+.error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+}
+
+/* Form Styles */
+form {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    max-width: 500px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Add shadow for modern look */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"], input[type="email"], input[type="date"], input[type="password"], select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Navigation */
+nav {
+    margin-bottom: 20px;
+    background-color: #343a40; /* Dark background */
+    padding: 10px;
+}
+
+nav a {
+    margin-right: 15px;
+    text-decoration: none;
+    color: #f8f9fa; /* Light text color */
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+    color: #ffc107; /* Bootstrap warning color */
+}
+
+/* Task List */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+
+table, th, td {
+    border: 1px solid #dee2e6;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f8f9fa;
+    color: #343a40;
+    font-weight: bold;
+}
+
+/* Links */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #0056b3;
+}
+
+/* Employee Dashboard Styles */
+.task-container {
+    margin-top: 20px;
+}
+
+.task-container h2 {
+    color: #343a40;
+    margin-bottom: 20px;
+}
+
+.task-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.task-container li {
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

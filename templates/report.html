@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Specifies the character encoding for the HTML document as UTF-8 -->
+    <meta charset="UTF-8">
+    <!-- Ensures the page scales correctly on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title of the page shown in the browser tab -->
+    <title>Report</title>
+    <!-- Links to Bootstrap CSS for styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="container">
+    <!-- Main heading for the report page, displaying the report type -->
+    <h1 class="my-4">Report: {{ report_type.replace('_', ' ').title() }}</h1>
+
+    <!-- Check if there are tasks available to display in the report -->
+    {% if tasks %}
+        <!-- Table displaying the task report with Bootstrap table classes for styling -->
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Deadline</th>
+                    <!-- Conditionally add "Assigned Employee" column if the report type is 'tasks_by_employee' -->
+                    {% if report_type == 'tasks_by_employee' %}
+                        <th>Assigned Employee</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through tasks and display each one in a table row -->
+                {% for task in tasks %}
+                <tr>
+                    <td>{{ task['title'] }}</td>
+                    <td>{{ task['description'] }}</td>
+                    <td>{{ task['status'] }}</td>
+                    <td>{{ task['deadline'] }}</td>
+                    <!-- Conditionally display the assigned employee for the 'tasks_by_employee' report type -->
+                    {% if report_type == 'tasks_by_employee' %}
+                        <td>{{ task['username'] }}</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <br>
+        <!-- Button to export the report to PDF -->
+        <a href="/export-pdf/{{ report_type }}" class="btn btn-success">Export to PDF</a>
+    {% else %}
+        <!-- Display a warning message if no tasks are found for the selected report -->
+        <div class="alert alert-warning">No tasks found for the selected report.</div>
+    {% endif %}
+    
+    <br>
+    <!-- Links to generate another report or go back to the home page -->
+    <a href="/generate-report" class="btn btn-secondary">Generate Another Report</a>
+    <a href="/" class="btn btn-primary">Back to Home</a>
+</body>
+</html>

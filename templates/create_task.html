@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Specify the character set as UTF-8 to ensure proper encoding of text -->
+    <meta charset="UTF-8">
+    <!-- Set the viewport to ensure the page is responsive on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title that appears in the browser tab -->
+    <title>Create Task</title>
+    <!-- Link to the Bootstrap CSS framework for styling -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="container">
+    <!-- Main heading for the page, indicating task creation -->
+    <h1 class="my-4">Create Task</h1>
+
+    <!-- Navigation Links for managers -->
+    <nav class="mb-4">
+        <!-- Button to navigate back to the Home page -->
+        <a href="/" class="btn btn-secondary">Home</a>
+        <!-- Button to view and edit existing tasks -->
+        <a href="/view-tasks-manager" class="btn btn-secondary">View Tasks</a>
+        <!-- Button to log out and end the session -->
+        <a href="/logout" class="btn btn-danger">Logout</a>
+    </nav>
+
+    <!-- Flash Messages Section for showing success or error notifications -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="mb-4">
+                <!-- Loop through flash messages, displaying success or error based on category -->
+                {% for category, message in messages %}
+                <div class="alert alert-{{ 'success' if category == 'success' else 'danger' }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Task Creation Form -->
+    <form method="POST" action="/create-task" class="card p-4 shadow-sm">
+        <!-- Input field for the task title -->
+        <div class="form-group">
+            <label for="title">Task Title:</label>
+            <input type="text" name="title" class="form-control" required>
+        </div>
+
+        <!-- Input field for the task description -->
+        <div class="form-group">
+            <label for="description">Task Description:</label>
+            <input type="text" name="description" class="form-control" required>
+        </div>
+
+        <!-- Input field for assigning the task to an employee (by username) -->
+        <div class="form-group">
+            <label for="assigned_to">Assign To (Employee Username):</label>
+            <input type="text" name="assigned_to" class="form-control" required>
+        </div>
+
+        <!-- Input field for setting the task deadline -->
+        <div class="form-group">
+            <label for="deadline">Deadline:</label>
+            <input type="date" name="deadline" class="form-control" required>
+        </div>
+
+        <!-- Submit button to create the task -->
+        <button type="submit" class="btn btn-primary">Create Task</button>
+    </form>
+</body>
+</html>
