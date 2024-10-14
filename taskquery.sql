@@ -1,0 +1,1 @@
+SELECT * FROM employee_task_db.tasks;
